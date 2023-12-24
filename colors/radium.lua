@@ -1,1 +1,3 @@
-require("radium").setup()
+require("radium").setup({
+  transparency = false,
+})
