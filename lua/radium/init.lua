@@ -21,15 +21,24 @@ vim.api.nvim_create_autocmd({ "User" }, {
   end
 })
 
+M.config = {
+  transparency = false,
+}
 
+local function check_config(config)
+  local err
+  return not err
+end
 
-function M.setup(opts)
-  local config = {
-    transparency = false,
-  }
+function M.setup(config)
+  if check_config(config) then
+    M.config = vim.tbl_deep_extend("force", M.config, config or {})
+  else
+    vim.notify("radium: Errors found while loading user config. Using default config.", vim.log.levels.ERROR)
+  end
+end
 
-  config = util.merge_tbl(config, opts)
-
+function M.load()
   local colors = util.get_colors()
   if not colors then
     return
@@ -39,7 +48,7 @@ function M.setup(opts)
   util.set_hls()
 
   -- get hls
-  local hls = util.get_hls(config.transparency)
+  local hls = util.get_hls(M.config.transparency)
 
   -- actually highlight stuff
   for hl, col in pairs(hls) do

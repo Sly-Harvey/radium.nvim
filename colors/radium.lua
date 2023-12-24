@@ -3,6 +3,4 @@ if g.colors_name ~= nil then
 	vim.api.nvim_command 'highlight clear'
 end
 
-require("radium").setup({
-  transparency = false,
-})
+require("radium").load()
