@@ -35,8 +35,6 @@ function M.setup(opts)
     return
   end
 
-  vim.api.nvim_command("highlight clear")
-
   -- term hls
   util.set_hls()
 

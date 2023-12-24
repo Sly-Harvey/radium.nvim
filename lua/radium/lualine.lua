@@ -1,4 +1,5 @@
-local colors = require("radium.colors")
+local util = require("radium.util")
+local colors = util.get_colors()
 
 local M = {}
 local default_b = { bg = colors.one_bg, fg = colors.white }
