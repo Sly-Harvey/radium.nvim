@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   pattern = { "SetRadiumTheme" },
   group = vim.api.nvim_create_augroup("SetRadiumTheme", { clear = true }),
   callback = function()
-    if vim.fn.has("lualine") then
+    if vim.fn.has("lualine") == 1 then
       require("lualine").setup({ options = { theme = require("radium.lualine") } })
     end
     vim.api.nvim_create_autocmd({ "ColorSchemePre" }, {
@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
       once = true,
       callback = function()
         vim.api.nvim_command 'highlight clear'
-        if vim.fn.has("lualine") then
+        if vim.fn.has("lualine") == 1 then
           require('lualine').setup({ options = { theme = "auto" } })
         end
       end
@@ -62,7 +62,7 @@ function M.load()
     end
   end
   vim.g.colors_name = "radium"
-  if vim.fn.has("lualine") then
+  if vim.fn.has("lualine") == 1 then
     require("lualine").setup({ options = { theme = require("radium.lualine") } })
   end
   vim.cmd("doautocmd User SetRadiumTheme")
